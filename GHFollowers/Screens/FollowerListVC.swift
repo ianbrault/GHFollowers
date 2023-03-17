@@ -63,6 +63,16 @@ class FollowerListVC: UIViewController {
                     self.hasMoreFollowers = false
                 }
                 self.followers.append(contentsOf: followers)
+
+                // check if the followers list is empty and show the empty screen if so
+                if self.followers.isEmpty {
+                    let message = "This user does not have any followers. Go follow them!"
+                    // NOTE: need to update UI on the main thread
+                    DispatchQueue.main.async {
+                        self.showEmptyStateView(with: message, in: self.view)
+                    }
+                    return
+                }
                 self.updateData()
 
             case.failure(let error):
