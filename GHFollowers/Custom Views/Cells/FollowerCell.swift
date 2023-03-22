@@ -39,28 +39,13 @@ class FollowerCell: UICollectionViewCell {
         let padding: CGFloat =  8
 
         NSLayoutConstraint.activate([
-            // NOTE: modified as part of iOS15 port
-            // leaving commented-out code here for posterity until I reach that video
-            // avatarImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: padding),
             avatarImageView.topAnchor.constraint(equalTo: topAnchor, constant: padding),
-            // NOTE: modified as part of iOS15 port
-            // leaving commented-out code here for posterity until I reach that video
-            // avatarImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding),
             avatarImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: padding),
-            // NOTE: modified as part of iOS15 port
-            // leaving commented-out code here for posterity until I reach that video
-            // avatarImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding),
             avatarImageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -padding),
             avatarImageView.heightAnchor.constraint(equalTo: avatarImageView.widthAnchor),
 
             usernameLabel.topAnchor.constraint(equalTo: avatarImageView.bottomAnchor, constant: 12),
-            // NOTE: modified as part of iOS15 port
-            // leaving commented-out code here for posterity until I reach that video
-            // usernameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding),
             usernameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: padding),
-            // NOTE: modified as part of iOS15 port
-            // leaving commented-out code here for posterity until I reach that video
-            // usernameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding),
             usernameLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -padding),
             usernameLabel.heightAnchor.constraint(equalToConstant: 20),
         ])
