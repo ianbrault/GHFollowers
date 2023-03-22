@@ -43,7 +43,7 @@ class FavoritesListVC: UIViewController {
 
     func getFavorites() {
         PersistenceManager.retrieveFavorites { [weak self] (result) in
-            guard let self = self else { return }
+            guard let self else { return }
 
             switch result {
             case .success(let favorites):
@@ -95,11 +95,14 @@ extension FavoritesListVC: UITableViewDataSource, UITableViewDelegate {
         let favorite = favorites[indexPath.row]
 
         PersistenceManager.updateWith(favorite: favorite, actionType: .remove) { [weak self] (error) in
-            guard let self = self else { return }
-            guard let error = error else {
+            guard let self else { return }
+            guard let error else {
                 // only update the UI once the persistence manager has updated
                 self.favorites.remove(at: indexPath.row)
                 tableView.deleteRows(at: [indexPath], with: .left)
+                if self.favorites.isEmpty {
+                    self.showEmptyStateView(with: "No favorites?\nAdd one on the follower screen.", in: self.view)
+                }
                 return
             }
 
