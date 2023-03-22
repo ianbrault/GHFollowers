@@ -65,6 +65,13 @@ extension UIViewController {
     }
 
     func showEmptyStateView(with message: String, in view: UIView) {
+        // present multiple empty state views from piling up
+        view.subviews.forEach { (subview) in
+            if subview is GFEmptyStateView {
+                subview.removeFromSuperview()
+            }
+        }
+
         let emptyStateView = GFEmptyStateView(message: message)
         emptyStateView.frame = view.bounds
         view.addSubview(emptyStateView)
