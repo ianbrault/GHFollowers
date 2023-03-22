@@ -22,15 +22,14 @@ class FavoriteCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        avatarImageView.image = Images.placeholder
+    }
+
     func set(favorite: Follower) {
         usernameLabel.text = favorite.login
-        NetworkManager.shared.downloadImage(from: favorite.avatarUrl) { [weak self] (image) in
-            guard let self = self else { return }
-            // NOTE: need to update UI on the main thread
-            DispatchQueue.main.async {
-                self.avatarImageView.image = image
-            }
-        }
+        avatarImageView.downloadImage(fromURL: favorite.avatarUrl)
     }
 
     private func configure() {

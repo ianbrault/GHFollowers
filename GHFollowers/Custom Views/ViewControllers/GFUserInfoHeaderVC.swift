@@ -47,13 +47,7 @@ class GFUserInfoHeaderVC: UIViewController {
     }
 
     func downloadAvatarImage() {
-        NetworkManager.shared.downloadImage(from: user.avatarUrl) { [weak self] (image) in
-            guard let self = self else { return }
-            // NOTE: need to update UI on the main thread
-            DispatchQueue.main.async {
-                self.avatarImageView.image = image
-            }
-        }
+        avatarImageView.downloadImage(fromURL: user.avatarUrl)
     }
 
     func addSubviews() {
